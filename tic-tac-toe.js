@@ -1,13 +1,14 @@
 document.addEventListener('DOMContentLoaded', function() {
     const squares = document.querySelectorAll('#board div');
     const status = document.getElementById('status');
+    const newGameButton = document.querySelector('.btn');
     let currentPlayer = 'X';
     const gameState = ['', '', '', '', '', '', '', '', ''];
     
     const winPatterns = [
-        [0, 1, 2], [3, 4, 5], [6, 7, 8], 
-        [0, 3, 6], [1, 4, 7], [2, 5, 8], 
-        [0, 4, 8], [2, 4, 6]              
+        [0, 1, 2], [3, 4, 5], [6, 7, 8],
+        [0, 3, 6], [1, 4, 7], [2, 5, 8],
+        [0, 4, 8], [2, 4, 6]
     ];
     
     function checkWinner() {
@@ -44,5 +45,18 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             }
         });
+    });
+    
+    
+    newGameButton.addEventListener('click', function() {
+        squares.forEach((square, index) => {
+            square.textContent = '';
+            square.classList.remove('X', 'O');
+            gameState[index] = '';
+        });
+        
+        status.textContent = 'Move your mouse over a square and click to play an X or an O.';
+        status.classList.remove('you-won');
+        currentPlayer = 'X';
     });
 });
