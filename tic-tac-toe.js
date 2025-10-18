@@ -6,14 +6,21 @@ document.addEventListener('DOMContentLoaded', function() {
     squares.forEach((square, index) => {
         square.classList.add('square');
         
-        // click event
+        // Hover feature
+        square.addEventListener('mouseenter', function() {
+            square.classList.add('hover');
+        });
+        
+        square.addEventListener('mouseleave', function() {
+            square.classList.remove('hover');
+        });
+        
+        // Click event
         square.addEventListener('click', function() {
             if (square.textContent === '') {
                 square.textContent = currentPlayer;
                 square.classList.add(currentPlayer);
                 gameState[index] = currentPlayer;
-                
-                // player switched
                 currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
             }
         });
